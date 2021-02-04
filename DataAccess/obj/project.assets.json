@@ -201,11 +201,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\İrem\\Source\\Repos\\ReCapDemo\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\İrem\\Source\\Repos\\ReCapProject\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\İrem\\Source\\Repos\\ReCapDemo\\DataAccess\\DataAccess.csproj",
+      "projectPath": "C:\\Users\\İrem\\Source\\Repos\\ReCapProject\\DataAccess\\DataAccess.csproj",
       "packagesPath": "C:\\Users\\İrem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\İrem\\Source\\Repos\\ReCapDemo\\DataAccess\\obj\\",
+      "outputPath": "C:\\Users\\İrem\\Source\\Repos\\ReCapProject\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\İrem\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -222,8 +222,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "C:\\Users\\İrem\\Source\\Repos\\ReCapDemo\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\İrem\\Source\\Repos\\ReCapDemo\\Entities\\Entities.csproj"
+            "C:\\Users\\İrem\\Source\\Repos\\ReCapProject\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\İrem\\Source\\Repos\\ReCapProject\\Entities\\Entities.csproj"
             }
           }
         }
