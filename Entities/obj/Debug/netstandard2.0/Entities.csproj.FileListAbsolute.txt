@@ -6,3 +6,12 @@ C:\Users\İrem\Source\Repos\ReCapDemo\Entities\obj\Debug\netstandard2.0\Entities
 C:\Users\İrem\Source\Repos\ReCapDemo\Entities\obj\Debug\netstandard2.0\Entities.csproj.CoreCompileInputs.cache
 C:\Users\İrem\Source\Repos\ReCapDemo\Entities\obj\Debug\netstandard2.0\Entities.dll
 C:\Users\İrem\Source\Repos\ReCapDemo\Entities\obj\Debug\netstandard2.0\Entities.pdb
+C:\Users\İrem\Source\Repos\ReCapProject\Entities\bin\Debug\netstandard2.0\Entities.deps.json
+C:\Users\İrem\Source\Repos\ReCapProject\Entities\bin\Debug\netstandard2.0\Entities.dll
+C:\Users\İrem\Source\Repos\ReCapProject\Entities\bin\Debug\netstandard2.0\Entities.pdb
+C:\Users\İrem\Source\Repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.csprojAssemblyReference.cache
+C:\Users\İrem\Source\Repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.AssemblyInfoInputs.cache
+C:\Users\İrem\Source\Repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.AssemblyInfo.cs
+C:\Users\İrem\Source\Repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.csproj.CoreCompileInputs.cache
+C:\Users\İrem\Source\Repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.dll
+C:\Users\İrem\Source\Repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.pdb

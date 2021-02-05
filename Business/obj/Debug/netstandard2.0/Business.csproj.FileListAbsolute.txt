@@ -12,3 +12,17 @@ C:\Users\İrem\Source\Repos\ReCapDemo\Business\obj\Debug\netstandard2.0\Business
 C:\Users\İrem\Source\Repos\ReCapDemo\Business\obj\Debug\netstandard2.0\Business.csproj.CopyComplete
 C:\Users\İrem\Source\Repos\ReCapDemo\Business\obj\Debug\netstandard2.0\Business.dll
 C:\Users\İrem\Source\Repos\ReCapDemo\Business\obj\Debug\netstandard2.0\Business.pdb
+C:\Users\İrem\Source\Repos\ReCapProject\Business\obj\Debug\netstandard2.0\Business.csprojAssemblyReference.cache
+C:\Users\İrem\Source\Repos\ReCapProject\Business\obj\Debug\netstandard2.0\Business.AssemblyInfoInputs.cache
+C:\Users\İrem\Source\Repos\ReCapProject\Business\obj\Debug\netstandard2.0\Business.AssemblyInfo.cs
+C:\Users\İrem\Source\Repos\ReCapProject\Business\obj\Debug\netstandard2.0\Business.csproj.CoreCompileInputs.cache
+C:\Users\İrem\Source\Repos\ReCapProject\Business\obj\Debug\netstandard2.0\Business.dll
+C:\Users\İrem\Source\Repos\ReCapProject\Business\obj\Debug\netstandard2.0\Business.pdb
+C:\Users\İrem\Source\Repos\ReCapProject\Business\bin\Debug\netstandard2.0\Business.deps.json
+C:\Users\İrem\Source\Repos\ReCapProject\Business\bin\Debug\netstandard2.0\Business.dll
+C:\Users\İrem\Source\Repos\ReCapProject\Business\bin\Debug\netstandard2.0\Business.pdb
+C:\Users\İrem\Source\Repos\ReCapProject\Business\bin\Debug\netstandard2.0\DataAccess.dll
+C:\Users\İrem\Source\Repos\ReCapProject\Business\bin\Debug\netstandard2.0\Entities.dll
+C:\Users\İrem\Source\Repos\ReCapProject\Business\bin\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\İrem\Source\Repos\ReCapProject\Business\bin\Debug\netstandard2.0\Entities.pdb
+C:\Users\İrem\Source\Repos\ReCapProject\Business\obj\Debug\netstandard2.0\Business.csproj.CopyComplete
