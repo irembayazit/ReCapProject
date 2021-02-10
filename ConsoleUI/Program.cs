@@ -16,11 +16,30 @@ namespace ConsoleUI
         {
             GetAll();
             Console.WriteLine(Environment.NewLine);
+
             GetCarsByBrandId();
             Console.WriteLine(Environment.NewLine);
+
             GetCarsByColorId();
             Console.WriteLine(Environment.NewLine);
+
             Add();
+            GetAll();
+
+            Console.WriteLine(Environment.NewLine);
+            //_carService.Delete(new Car { Id = 2 });
+            //GetAll();
+            //Console.WriteLine(Environment.NewLine);
+
+            _carService.Update(new Car { Id = 1015, DailyPrice = 100, Description = " degistirilen arac" });
+            GetAll();
+            Console.WriteLine(Environment.NewLine);
+            List<CarDetailDto> cars = _carService.GetCarDetailDto();
+            foreach (var car in cars)
+            {
+                Console.WriteLine(car.Name + "---" + car.BrandName + "---" + car.ColorName + "---" + car.DailyPrice);
+            }
+
         }
         static void Add()
         {
@@ -48,7 +67,7 @@ namespace ConsoleUI
             List<CarDetailDto> cars = _carService.GetCarsByBrandId(4);
             foreach (var car in cars)
             {
-                Console.WriteLine(String.Format($"Id : {car.Id}, Name : {car.Description}, BrandId : {car.BrandId}"));
+                Console.WriteLine(String.Format($"Id : {car.Id}, Name : {car.Name}, BrandId : {car.BrandId}"));
             }
         }
 

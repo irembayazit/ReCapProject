@@ -40,7 +40,7 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
-        public List<CarDetailDto> GetCarDetailDto(int v)
+        public List<CarDetailDto> GetCarDetailDto()
         {
             return _carDal.GetCarDetailDtos();
         }
