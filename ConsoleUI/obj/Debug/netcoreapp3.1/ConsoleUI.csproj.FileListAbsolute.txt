@@ -78,3 +78,5 @@ C:\Users\İrem\Source\Repos\ReCapProject\ConsoleUI\bin\Debug\netcoreapp3.1\DataA
 C:\Users\İrem\Source\Repos\ReCapProject\ConsoleUI\bin\Debug\netcoreapp3.1\Entities.pdb
 C:\Users\İrem\Source\Repos\ReCapProject\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.csproj.CopyComplete
 C:\Users\İrem\Source\Repos\ReCapProject\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.genruntimeconfig.cache
+C:\Users\İrem\Source\Repos\ReCapProject\ConsoleUI\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\İrem\Source\Repos\ReCapProject\ConsoleUI\bin\Debug\netcoreapp3.1\Core.pdb
