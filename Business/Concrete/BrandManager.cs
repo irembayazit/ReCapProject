@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constent;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -15,22 +18,22 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
         {
             if (brand.Name.Length >= 2)
             {
                 _brandDal.Add(brand);
-                Console.WriteLine("Marka başarıyla eklendi.");
+                return new SuccessResult(Messages.CarAdded);
             }
             else
             {
-                Console.WriteLine($"Lütfen marka isminin uzunluğunu 2 karakterden fazla giriniz. Girdiğiniz marka ismi : {brand.Name}");
+                return new ErrorResult(Messages.CarAddInvalid);
             }
         }
 
-        public List<Brand> GetCarsByBrandId(int id)
+        public IDataResult<List<Brand>> GetCarsByBrandId(int id)
         {
-            return _brandDal.GetAll(p => p.Id == id);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.Id == id));
         }
     }
 }
