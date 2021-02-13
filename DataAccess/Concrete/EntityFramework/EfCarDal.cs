@@ -11,11 +11,11 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramwork
 {
-    public class EfCarDal : EfEntityRepositoryBase<Car, CarTableContext>, ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car, EfCarTableContext>, ICarDal
     {
         public List<CarDetailDto> GetCarDetailDtos(Expression<Func<Car, bool>> filter = null)
         {
-            using (CarTableContext context = new CarTableContext())
+            using (EfCarTableContext context = new EfCarTableContext())
             {
                 var result = from ca in filter is null ? context.Car : context.Car.Where(filter)
                              join br in context.Brands

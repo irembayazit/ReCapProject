@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramwork;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -12,9 +13,33 @@ namespace ConsoleUI
     class Program
     {
         static CarManager _carService = new CarManager(new EfCarDal());
+        static UserManager _userManager = new UserManager(new EfUserDal());
+        static CustomerManager _CarManager = new CustomerManager(new EfCustomerDal());
+        static RentalManager _rentalManager = new RentalManager(new EfRentalDal());
         static void Main(string[] args)
         {
-            //Fonk_deneme();
+            //CRUD_deneme();
+            //Message_Deneme();
+            User user = new User
+            {
+                FirstName = "Ali",
+                LastName = "yılmaz",
+                Email = "ali_yılmaz@gmail.com",
+                Password ="963"
+            };
+            Console.WriteLine(_userManager.Add(user).Message);
+            Rental rental = new Rental
+            {
+                CarId = 1,
+                RentDate = new DateTime(2008, 06, 14),
+                ReturnDate = new DateTime(2008, 07, 03)
+            };
+            Console.WriteLine(_rentalManager.Add(rental).Message);
+
+        }
+
+        private static void Message_Deneme()
+        {
             CarManager productManager = new CarManager(new EfCarDal());
 
             var result = productManager.GetCarDetailDto();
@@ -30,10 +55,9 @@ namespace ConsoleUI
             {
                 Console.WriteLine(result.Message);
             }
-
         }
 
-        private static void Fonk_deneme()
+        private static void CRUD_deneme()
         {
             GetAll();
             Console.WriteLine(Environment.NewLine);
@@ -145,7 +169,7 @@ namespace ConsoleUI
 
             Console.WriteLine("********************************");
 
-            CarTableContext carTableContext = new CarTableContext();
+            EfCarTableContext carTableContext = new EfCarTableContext();
             foreach (var item in carTableContext.Car)
             {
                 Console.WriteLine(item.Description);
