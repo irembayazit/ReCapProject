@@ -23,6 +23,9 @@ namespace Business.Constent
         public static string UserAdd = "Kullanıcı blgileri eklendi.";
         public static string UserDelete = "Kullanıcı blgileri silindi.";
         public static string UserUpdate = "Kullanıcı blgileri güncellendi.";
+        public static string FailAddedImageLimit = "Daha fazla resim yüklenemez!";
+        public static string ImagesAdded = "resim eklendi";
+        public static string CarIdNotFound = "kayıtlı id bulunamadı";
 
     }
 }
