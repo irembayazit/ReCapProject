@@ -1,9 +1,9 @@
 ﻿using Business.Abstract;
 using Business.Constent;
+using Core.Entities.Concrete;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
-using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,11 +28,22 @@ namespace Business.Concrete
             _userDal.Delete(user);
             return new SuccessResult(Messages.UserDelete);
         }
-
         public IResult Update(User user)
         {
             _userDal.Update(user);
             return new SuccessResult(Messages.UserDelete);
         }
+
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u => u.Email == email);
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
+        }
+
+        
     }
 }

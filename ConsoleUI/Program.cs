@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Core.Entities.Concrete;
 using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -24,7 +25,6 @@ namespace ConsoleUI
                 FirstName = "Ali",
                 LastName = "yılmaz",
                 Email = "ali_yılmaz@gmail.com",
-                Password ="963"
             };
             Console.WriteLine(_userManager.Add(user).Message);
             Rental rental = new Rental
