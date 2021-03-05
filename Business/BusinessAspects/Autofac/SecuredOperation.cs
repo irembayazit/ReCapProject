@@ -8,7 +8,6 @@ using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
 using Core.Exstensions;
 using Business.Constent;
-
 namespace Business.BusinessAspects.Autofac
 {
     //JWT

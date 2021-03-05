@@ -73,4 +73,6 @@ C:\Users\İrem\Source\Repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsof
 C:\Users\İrem\Source\Repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\İrem\Source\Repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authorization.dll
 C:\Users\İrem\Source\Repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Metadata.dll
-C:\Users\İrem\Source\Repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Debug.dll
+C:\Users\İrem\Source\Repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\İrem\Source\Repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\İrem\Source\Repos\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
