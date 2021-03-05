@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -55,6 +56,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
+        //[Authorize(Roles ="Product.List")]//token olması yeterli
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();

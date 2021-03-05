@@ -2,9 +2,6 @@
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Security.JWT;
 using Entities.DTOs.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Abstract
 {
@@ -14,6 +11,5 @@ namespace Business.Abstract
         IDataResult<User> Login(UserForLoginDto userForLoginDto);
         IResult UserExists(string email);
         IDataResult<AccessToken> CreateAccessToken(User user);
-    
     }
 }

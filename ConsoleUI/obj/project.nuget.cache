@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KbTzuQKNEpmAxxY24zBrPp3FhjZXH/F6mOHGolSZ3U5zPs9O+Gw48BzTlSi3AuQ6WmskCuzsd2URMnKUysAupA==",
+  "dgSpecHash": "MbUjX3nMqXuY1s/I2oigxBZr6ciYu7IeqAJD4/XaXF8/zD9UdpMgUdkDrSAYe9rBJDbA9bV00pU8cdDeD4vuDw==",
   "success": true,
   "projectFilePath": "C:\\Users\\İrem\\Source\\Repos\\ReCapProject\\ConsoleUI\\ConsoleUI.csproj",
   "expectedPackageFiles": [
@@ -27,8 +27,8 @@
     "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.11\\microsoft.extensions.configuration.3.1.11.nupkg.sha512",
     "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.11\\microsoft.extensions.configuration.abstractions.3.1.11.nupkg.sha512",
     "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.11\\microsoft.extensions.configuration.binder.3.1.11.nupkg.sha512",
-    "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.11\\microsoft.extensions.dependencyinjection.3.1.11.nupkg.sha512",
-    "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.11\\microsoft.extensions.dependencyinjection.abstractions.3.1.11.nupkg.sha512",
+    "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.1\\microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.logging\\3.1.11\\microsoft.extensions.logging.3.1.11.nupkg.sha512",
     "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.11\\microsoft.extensions.logging.abstractions.3.1.11.nupkg.sha512",
     "C:\\Users\\İrem\\.nuget\\packages\\microsoft.extensions.objectpool\\2.2.0\\microsoft.extensions.objectpool.2.2.0.nupkg.sha512",

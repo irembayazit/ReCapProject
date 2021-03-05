@@ -2,9 +2,9 @@
 using Business.Constent;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results.Abstract;
-using Core.Utilities.Results.Business;
 using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
 using Entities.Concrete;

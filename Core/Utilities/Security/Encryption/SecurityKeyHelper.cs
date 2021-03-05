@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Core.Utilities.Security.Encryption
 {
+    //şifreyi bilinmeyen bir degere donusturmek için arac oluşturur
     public class SecurityKeyHelper
     {
         public static SecurityKey CreateSecurityKey(string securityKey)
