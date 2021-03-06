@@ -17,10 +17,10 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (EfCarTableContext context = new EfCarTableContext())
             {
-                var result = from ca in filter is null ? context.Car : context.Car.Where(filter)
+                var result = from ca in filter is null ? context.Cars : context.Cars.Where(filter)
                              join br in context.Brands
                              on ca.BrandId equals br.Id
-                             join co in context.Color
+                             join co in context.Colors
                              on ca.ColorId equals co.Id
                              select new CarDetailDto
                              {

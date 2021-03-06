@@ -34,7 +34,8 @@ namespace Business.Concrete
 
             return new SuccessResult(Messages.CarAdded);
         }
-
+        //[SecuredOperation("product.add,admin")]
+        [SecuredOperation("product.delete,manager")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
