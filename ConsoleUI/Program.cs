@@ -169,10 +169,10 @@ namespace ConsoleUI
             Console.WriteLine("********************************");
 
             EfCarTableContext carTableContext = new EfCarTableContext();
-            foreach (var item in carTableContext.Car)
-            {
-                Console.WriteLine(item.Description);
-            }
+            //foreach (var item in carTableContext.Car)
+            //{
+            //    Console.WriteLine(item.Description);
+            //}
         }
     }
 }
