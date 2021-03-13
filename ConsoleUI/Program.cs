@@ -75,7 +75,7 @@ namespace ConsoleUI
             //GetAll();
             //Console.WriteLine(Environment.NewLine);
 
-            _carService.Update(new Car { Id = 1015, DailyPrice = 100, Description = " degistirilen arac" });
+            _carService.Update(new Car { CarId = 1015, DailyPrice = 100, Description = " degistirilen arac" });
             GetAll();
             Console.WriteLine(Environment.NewLine);
 
@@ -132,7 +132,7 @@ namespace ConsoleUI
             var result3 = _carService.GetAll();
             foreach (Car car in result3.Data)
             {
-                Console.WriteLine(String.Format($"Id : {car.Id}, Name : {car.Description}"));
+                Console.WriteLine(String.Format($"Id : {car.CarId}, Name : {car.Description}"));
             }
         }
 
@@ -146,7 +146,7 @@ namespace ConsoleUI
             {
                 Console.WriteLine(car.Name);
             }
-            brandManager.Add(new Brand { Id = 7, Name = "cd" });
+            brandManager.Add(new Brand { BrandId = 7, Name = "cd" });
 
 
 

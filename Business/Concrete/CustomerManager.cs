@@ -4,6 +4,7 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,6 +28,11 @@ namespace Business.Concrete
         {
             _customerDal.Delete(customer);
             return new SuccessResult(Messages.CustomerDelete);
+        }
+
+        public IDataResult<List<CustomerDetailDto>> GetCustomerDetailDTO()
+        {
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetailDTOs(), Messages.CustomerListed);
         }
 
         public IResult Update(Customer customer)

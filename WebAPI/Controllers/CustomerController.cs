@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -44,6 +45,19 @@ namespace WebAPI.Controllers
         public IActionResult Delete(Customer customer)
         {
             var result = _customerService.Delete(customer);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("GetCustomerDetailDTOs")]
+        public IActionResult GetCustomerDetailDTOs()
+        {
+            Thread.Sleep(3000);
+
+            var result = _customerService.GetCustomerDetailDTO();
             if (result.Success)
             {
                 return Ok(result);

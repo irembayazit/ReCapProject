@@ -34,5 +34,9 @@ namespace Business.Constent
         public static string UserAlreadyExists = "Kullanıcı mevcut";
         public static string AccessTokenCreated = "Token oluşturuldu";
         public static string AuthorizationDenied = "Yetkiniz yok!";
+        public static string BrandListed = "markalar listelendi";
+        public static string ColorListed = "renkler listeendi";
+        public static string CustomerListed = "müşteriler listelendi";
+        public static string RentalListed = "kiralık araç bilgileri listelendi";
     }
 }

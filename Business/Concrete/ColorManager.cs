@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constent;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
@@ -19,6 +20,11 @@ namespace Business.Concrete
         public IDataResult<List<Color>> GetCarsByColorId(int id)
         {
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p => p.Id == id));
+        }
+
+        public IDataResult<List<Color>> GetAll()
+        {
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
         }
     }
 }

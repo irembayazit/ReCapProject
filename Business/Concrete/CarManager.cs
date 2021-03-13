@@ -79,7 +79,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         public IDataResult<Car> GetCarById(int v)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(x => x.Id == v));
+            return new SuccessDataResult<Car>(_carDal.Get(x => x.CarId == v));
         }
 
         [TransactionScopeAspect]
@@ -93,6 +93,11 @@ namespace Business.Concrete
             Add(car);
 
             return null;
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailDto_front()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(),Messages.CarListed);
         }
     }
 }
