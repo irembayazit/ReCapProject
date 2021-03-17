@@ -8,50 +8,41 @@ namespace Core.Utilities.Helpers
 {
     public class FileHelper
     {
-        public static string Add(IFormFile file)
+        static string directory = Directory.GetCurrentDirectory() + @"\wwwroot\";
+        static string path = @"Upload\Images\CarImages\";
+
+        public static string UploadImageFile(IFormFile imageFile)
         {
-            var sourcepath = Path.GetTempFileName();
-            if (file.Length > 0)
+            string fileFormat = Path.GetExtension(imageFile.FileName).ToLower();
+            string fileName = Guid.NewGuid().ToString();
+            string imagePath = Path.Combine(directory + path, fileName + fileFormat);
+            if (!Directory.Exists(directory + path))
             {
-                using (var stream = new FileStream(sourcepath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
+                Directory.CreateDirectory(directory + path);
             }
-            var result = newPath(file);
-            File.Move(sourcepath, result);
-            return result;
-        }
-
-        public static void Delete(string path)
-        {
-            File.Delete(path);
-        }
-
-        public static string Update(string sourcePath, IFormFile file)
-        {
-            var result = newPath(file);
-            if (sourcePath.Length > 0)
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
-                using (var stream = new FileStream(result, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
+                imageFile.CopyTo(fileStream);
+                fileStream.Flush();
             }
-            File.Delete(sourcePath);
-            return result;
+            //return fileName + fileFormat;
+            return path.Replace(@"\", "/") + fileName + fileFormat;
         }
-        public static string newPath(IFormFile file)
+
+        public static void UpdateImageFile(IFormFile imageFile, string imagePath)
         {
-            FileInfo ff = new FileInfo(file.FileName);
-            string fileExtension = ff.Extension;
-
-            string path = Environment.CurrentDirectory + @"\Images\carImages";
-            var newPath = Guid.NewGuid().ToString() + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Year + fileExtension;
-
-            string result = $@"{path}\{newPath}";
-            return result;
+            var path = Path.Combine(@"wwwroot\Upload\Images\CarImages", imagePath);
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                imageFile.CopyTo(fileStream);
+                fileStream.Flush();
+            }
         }
+        public static void DeleteImageFile(string fileName)
+        {
+            var path = Path.Combine(@"wwwroot\Upload\Images\CarImages", fileName);
+            if (File.Exists(path)) File.Delete(path);
 
+        }
     }
 }

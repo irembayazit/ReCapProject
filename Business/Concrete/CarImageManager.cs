@@ -8,6 +8,7 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -19,36 +20,38 @@ namespace Business.Concrete
     public class CarImageManager : ICarImageService
     {
         ICarImageDal _carImageDal;
-        ICarService _carService;
-
-        public CarImageManager(ICarImageDal carImageDal, ICarService carService)
+        public CarImageManager(ICarImageDal carImageDal)
         {
             _carImageDal = carImageDal;
-            _carService = carService;
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
-        public IResult Add(IFormFile file, CarImage carImage)
+        public IResult Add(CarImageDto carImageDto)
         {
-            IResult result = BusinessRules.Run(CheckIfImageLimitExceded(carImage.CarId), CheckIfIdControl(carImage.CarId));
-            if (result!=null)
+            var result = BusinessRules.Run(CheckIfImageLimitExceded(carImageDto.CarId));
+            
+            if (result != null)
             {
                 return result;
             }
-
-            carImage.ImagePath = FileHelper.Add(file);
-            carImage.Date = DateTime.Now;
+            CarImage carImage = new CarImage
+            {
+                CarId = carImageDto.CarId,
+                ImagePath = FileHelper.UploadImageFile(carImageDto.ImageFile),
+                Date = DateTime.Now
+            };
             _carImageDal.Add(carImage);
+
             return new SuccessResult(Messages.ImagesAdded);
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
-        public IResult Update(IFormFile file, CarImage carImage)
+        public IResult Update(CarImageDto carImageDto)
         {
-            carImage.ImagePath = FileHelper.Update(_carImageDal.Get(p => p.Id == carImage.Id).ImagePath, file);
-            carImage.Date = DateTime.Now;
-            _carImageDal.Update(carImage);
-            return new SuccessResult();
+            var dbImage = _carImageDal.Get(ci => ci.id == carImageDto.Id);
+            if (dbImage == null) return new ErrorResult("Image nor found");
+            FileHelper.UpdateImageFile(carImageDto.ImageFile, dbImage.ImagePath);
+            return new SuccessResult(Messages.ImagesAdded);
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
@@ -60,21 +63,20 @@ namespace Business.Concrete
 
         public IDataResult<CarImage> Get(int id)
         {
-            return new SuccessDataResult<CarImage>(_carImageDal.Get(p=>p.Id == id));
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(p=>p.id == id));
         }
-
 
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
         }
 
-        public IDataResult<List<CarImage>> GetImagesByCarId(int id)
+        public IDataResult<List<CarImage>> GetImagesByCarId(int carId)
         {
-            var result = _carService.GetCarById(id);
-            if(result.Data != null)
+            var result = _carImageDal.GetAll(p => p.CarId == carId);
+            if (result != null)
             {
-                return new SuccessDataResult<List<CarImage>>(CheckIfCarImageNull(id)); ;
+                return new SuccessDataResult<List<CarImage>>(CheckIfCarImageNull(carId));
             }
             return new ErrorDataResult<List<CarImage>>(Messages.CarIdNotFound);
         }
@@ -90,8 +92,8 @@ namespace Business.Concrete
         }
         private IResult CheckIfIdControl(int carId)
         {
-            var result = _carService.GetCarById(carId);
-            if (result.Data == null)
+            var result = _carImageDal.GetAll(x=>x.CarId == carId);
+            if (result == null)
             {
                 return new ErrorResult(Messages.CarIdNotFound);
             }

@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Helpers;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,9 +24,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add([FromForm(Name = ("Image"))] IFormFile file, [FromForm] CarImage carImage)
+        public IActionResult Add([FromForm] CarImageDto carImageDto)
         {
-            var result = _carImageService.Add(file, carImage);
+            var result = _carImageService.Add(carImageDto);
+
             if (result.Success)
             {
                 return Ok(result);
@@ -46,15 +49,11 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("update")]
-        public IActionResult Update([FromForm(Name = ("Image"))] IFormFile file, [FromForm(Name = ("Id"))] int Id)
+        [HttpPost("Update")]
+        public IActionResult Upload([FromForm] CarImageDto carImageDTO)
         {
-            var carImage = _carImageService.Get(Id).Data;
-            var result = _carImageService.Update(file, carImage);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
+            var result = _carImageService.Update(carImageDTO);
+            if (result.Success) return Ok(result);
             return BadRequest(result);
         }
 
@@ -81,9 +80,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getimagesbycarid")]
-        public IActionResult GetImagesById(int id)
+        public IActionResult GetImagesById(int carId)
         {
-            var result = _carImageService.GetImagesByCarId(id);
+            var result = _carImageService.GetImagesByCarId(carId);
             if (result.Success)
             {
                 return Ok(result);

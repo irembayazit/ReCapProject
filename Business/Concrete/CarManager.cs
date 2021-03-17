@@ -7,6 +7,7 @@ using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
@@ -14,6 +15,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -21,13 +23,14 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-        public CarManager(ICarDal carDal)
+        ICarImageService _carImageService;
+        public CarManager(ICarDal carDal, ICarImageService carImageService)
         {
+            _carImageService = carImageService;
             _carDal = carDal;
-
         }
 
-        [SecuredOperation("product.add,admin")]
+            [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
@@ -44,6 +47,25 @@ namespace Business.Concrete
         {
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
+        }
+
+        public IDataResult<CarDetailAndImagesDto> GetCarDetailAndImagesDto(int carId)
+        {
+            var result = _carDal.GetCarDetailDtos(x => x.CarId == carId).SingleOrDefault();
+
+            var imageResult = _carImageService.GetImagesByCarId(carId);
+            if (result == null || imageResult.Success == false)
+            {
+                return new ErrorDataResult<CarDetailAndImagesDto>(Messages.GetErrorCarMessage);
+            }
+
+            var carDetailAndImagesDto = new CarDetailAndImagesDto
+            {
+                Car = result,
+                CarImages = imageResult.Data
+            };
+
+            return new SuccessDataResult<CarDetailAndImagesDto>(carDetailAndImagesDto, Messages.GetSuccessCarMessage);
         }
 
         [ValidationAspect(typeof(CarValidator))]
@@ -65,9 +87,28 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos());
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int v)
+        public IDataResult<List<CarDetailDto>> GetCarDetailDtoByCarId(int carId)
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x=> x.BrandId == v));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x=>x.CarId == carId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId)
+        {
+            IResult result = BusinessRules.Run(CheckIfBrandId(brandId));
+
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x=> x.BrandId == brandId));
+        }
+
+
+        private IResult CheckIfBrandId(int brandId)
+        {
+            var result = _carDal.GetAll(p => p.BrandId == brandId).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.BradndIdNotFound);
+            }
+
+            return new SuccessResult();
         }
 
         public IDataResult<List<CarDetailDto>> GetCarsByColorId(int v)
@@ -95,9 +136,5 @@ namespace Business.Concrete
             return null;
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarDetailDto_front()
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(),Messages.CarListed);
-        }
     }
 }

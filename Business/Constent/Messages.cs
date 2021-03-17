@@ -38,5 +38,8 @@ namespace Business.Constent
         public static string ColorListed = "renkler listeendi";
         public static string CustomerListed = "müşteriler listelendi";
         public static string RentalListed = "kiralık araç bilgileri listelendi";
+        public static string BradndIdNotFound = "ilgili id bulunamadı";
+        public static string GetErrorCarMessage = "Araç bilgisi / bilgileri getirilemedi.";
+        public static string GetSuccessCarMessage = "Araç bilgisi / bilgileri getirildi.";
     }
 }

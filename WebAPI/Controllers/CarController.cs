@@ -34,6 +34,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getcardetail")]
+        public IActionResult GetCarDetail(int id)
+        {
+            var result = _carService.GetCarDetailAndImagesDto(id);
+            if (result.Success)
+                return Ok(result);
+            else
+                return BadRequest(result);
+        }
+
+
         [HttpPost("update")]  
         public  IActionResult Update(Car car)
         {
@@ -68,10 +79,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("getcarsbybrandid")]
-        public IActionResult GetCarsByBrandId(int id)
+        [HttpGet("getcarsbybrandid")]
+        public IActionResult GetCarsByBrandId(int brandId)
         {
-            var result = _carService.GetCarsByBrandId(id);
+            var result = _carService.GetCarsByBrandId(brandId);
             if (result.Success)
             {
                 return Ok(result);
@@ -79,10 +90,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("getcarsbycolorid")]
-        public IActionResult GetCarsByColorId(int id)
+        [HttpGet("getcarsbycolorid")]
+        public IActionResult GetCarsByColorId(int colorId)
         {
-            var result = _carService.GetCarsByColorId(id);
+            var result = _carService.GetCarsByColorId(colorId);
             if (result.Success)
             {
                 return Ok(result);
@@ -93,9 +104,20 @@ namespace WebAPI.Controllers
         [HttpGet("getcardetaildto")]
         public IActionResult GetCarDetailDto()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
 
             var result = _carService.GetCarDetailDto();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getcardetaildtobycarid")]
+        public IActionResult GetCarDetailDtoByCarId(int carId)
+        {
+            var result = _carService.GetCarDetailDtoByCarId(carId);
             if (result.Success)
             {
                 return Ok(result);

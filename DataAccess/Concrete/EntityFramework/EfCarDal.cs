@@ -21,10 +21,10 @@ namespace DataAccess.Concrete.EntityFramework
                              join br in context.Brands
                              on ca.BrandId equals br.BrandId
                              join co in context.Colors
-                             on ca.ColorId equals co.Id
+                             on ca.ColorId equals co.ColorId
                              select new CarDetailDto
                              {
-                                 Id = ca.CarId,
+                                 CarId = ca.CarId,
                                  BrandName = br.Name,
                                  ColorName = co.Name,
                                  DailyPrice = ca.DailyPrice,

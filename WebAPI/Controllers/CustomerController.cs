@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
         [HttpGet("GetCustomerDetailDTOs")]
         public IActionResult GetCustomerDetailDTOs()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
 
             var result = _customerService.GetCustomerDetailDTO();
             if (result.Success)
