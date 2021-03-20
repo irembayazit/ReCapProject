@@ -7,16 +7,19 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Core.Utilities.Results.Abstract;
+using System.Linq.Expressions;
+
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal: EfEntityRepositoryBase<Rental,EfCarTableContext>,IRentalDal
     {
-        public List<RentalDetailDto> GetRentalDetailDTOs()
+        public List<RentalDetailDto> GetRentalDetailDTOs(Expression<Func<Rental, bool>> filter = null)
         {
             using (var context = new EfCarTableContext())
             {
-                var result = from rental in context.Rentals
+                
+                var result = from rental in filter is null ? context.Rentals : context.Rentals.Where(filter)
                              join car in context.Cars on rental.CarId equals car.CarId
                              join brand in context.Brands on car.BrandId equals brand.BrandId
                              join customer in context.Customers on rental.CustomerId equals customer.Id
@@ -27,7 +30,5 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
-
-       
     }
 }

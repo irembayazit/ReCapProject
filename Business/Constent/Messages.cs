@@ -41,5 +41,8 @@ namespace Business.Constent
         public static string BradndIdNotFound = "ilgili id bulunamadı";
         public static string GetErrorCarMessage = "Araç bilgisi / bilgileri getirilemedi.";
         public static string GetSuccessCarMessage = "Araç bilgisi / bilgileri getirildi.";
+        public static string CreditCardAdded = "Kredi kartı eklendi";
+        public static string CreditCardDeleted = "Kredi karı silindi";
+        public static string CreditCardUpdated = "kredi kartı güncellendi";
     }
 }

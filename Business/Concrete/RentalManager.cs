@@ -34,9 +34,36 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalDelete);
         }
 
+        public IDataResult<List<RentalDetailDto>> GetRentalByCarIdDetailDTOs(int carId)
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailDTOs(x => x.CarId == carId), Messages.RentalListed);
+        }
+
         public IDataResult<List<RentalDetailDto>> GetRentalDetailDTOs()
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailDTOs(), Messages.RentalListed);
+        }
+
+        public IResult IsRentable(Rental rental)
+        {
+            var dates = _rentalDal.GetAll(x => x.CarId == rental.CarId);
+            foreach (var date in dates)
+            {
+                if (date.RentDate <= rental.RentDate && rental.RentDate <= date.ReturnDate)
+                {
+                    return new ErrorResult();
+                }
+                else if (date.RentDate <= rental.ReturnDate && rental.ReturnDate <= date.ReturnDate)
+                {
+                    return new ErrorResult();
+                }
+                else if (date.RentDate >= rental.RentDate && rental.ReturnDate >= date.ReturnDate)
+                {
+                    return new ErrorResult();
+                }
+            }
+             return new SuccessResult();
+            
         }
 
         public IResult Update(Rental rental)
