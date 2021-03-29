@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constent;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
@@ -17,14 +19,31 @@ namespace Business.Concrete
         {
             _colorDal = colorDal;
         }
-        public IDataResult<List<Color>> GetCarsByColorId(int id)
+
+        [ValidationAspect(typeof(ColorValidator))]
+        public IResult Add(Color color)
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p => p.ColorId == id));
+            _colorDal.Add(color);
+            return new SuccessResult(Messages.ColorAdded);
+
+        }
+        public IResult Update(Color color)
+        {
+            _colorDal.Update(color);
+            return new SuccessResult(Messages.ColorUpdated);
+
+        }
+
+        public IDataResult<Color> GetCarsByColorId(int id)
+        {
+            return new SuccessDataResult<Color>(_colorDal.Get(p => p.ColorId == id));
         }
 
         public IDataResult<List<Color>> GetAll()
         {
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
         }
+
+        
     }
 }

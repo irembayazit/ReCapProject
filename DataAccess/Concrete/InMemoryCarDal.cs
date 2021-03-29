@@ -16,11 +16,11 @@ namespace DataAccess.Concrete
         {
             _cars = new List<Car>
             {
-                new Car{CarId=1,BrandId=1,ColorId=003,DailyPrice=700,ModelYear=2019,Description="1.Well"},
-                new Car{CarId=2,BrandId=2,ColorId=005,DailyPrice=500,ModelYear=2018,Description="2.Well"},
-                new Car{CarId=3,BrandId=1,ColorId=002,DailyPrice=1000,ModelYear=2020,Description="3.Well"},
-                new Car{CarId=4,BrandId=1,ColorId=003,DailyPrice=800,ModelYear=2016,Description="4.Well"},
-                new Car{CarId=5,BrandId=2,ColorId=008,DailyPrice=600,ModelYear=2015,Description="5.Well"}
+                new Car{id=1,brandId=1,colorId=003,dailyPrice=700,modelYear=2019,description="1.Well"},
+                new Car{id=2,brandId=2,colorId=005,dailyPrice=500,modelYear=2018,description="2.Well"},
+                new Car{id=3,brandId=1,colorId=002,dailyPrice=1000,modelYear=2020,description="3.Well"},
+                new Car{id=4,brandId=1,colorId=003,dailyPrice=800,modelYear=2016,description="4.Well"},
+                new Car{id=5,brandId=2,colorId=008,dailyPrice=600,modelYear=2015,description="5.Well"}
             };
         }
         public void Add(Car car)
@@ -30,7 +30,7 @@ namespace DataAccess.Concrete
 
         public void Delete(Car car)
         {
-            Car carDelete = _cars.SingleOrDefault(p => p.CarId == car.CarId);
+            Car carDelete = _cars.SingleOrDefault(p => p.id == car.id);
             _cars.Remove(carDelete);
         }
 
@@ -51,11 +51,17 @@ namespace DataAccess.Concrete
 
         public void Update(Car car)
         {
-            Car carUpdate = _cars.SingleOrDefault(p=>p.CarId == car.CarId);
-            carUpdate.BrandId = car.BrandId;
-            carUpdate.ColorId = car.ColorId;
-            carUpdate.DailyPrice = car.DailyPrice;
-            carUpdate.Description = car.Description;
+            Car carUpdate = _cars.SingleOrDefault(p=>p.id == car.id);
+            carUpdate.brandId = car.brandId;
+            carUpdate.colorId = car.colorId;
+            carUpdate.dailyPrice = car.dailyPrice;
+            carUpdate.description = car.description;
         }
+
+        public CarDetailDto GetCarDetailDto(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

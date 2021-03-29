@@ -7,6 +7,8 @@ namespace Business.Constent
 {
     public static class Messages
     {
+        public static string ColorAdded = "renk eklendiii";
+        public static string BrandAdded = "marka eklendiii";
         public static string CarAdded = "Araba eklendi";
         public static string CarAddInvalid = "Gecersiz deger.Araba eklenemedi!";
         public static string BrandNameInvalid = "Marka adı gecersiz";
@@ -44,5 +46,6 @@ namespace Business.Constent
         public static string CreditCardAdded = "Kredi kartı eklendi";
         public static string CreditCardDeleted = "Kredi karı silindi";
         public static string CreditCardUpdated = "kredi kartı güncellendi";
+        public static string ColorUpdated = "Renk bilgisi güncellendi";
     }
 }

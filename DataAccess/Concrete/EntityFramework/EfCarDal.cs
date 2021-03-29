@@ -18,19 +18,40 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from ca in filter is null ? context.Cars : context.Cars.Where(filter)
                              join br in context.Brands
-                             on ca.BrandId equals br.BrandId
+                             on ca.brandId equals br.BrandId
                              join co in context.Colors
-                             on ca.ColorId equals co.ColorId
+                             on ca.colorId equals co.ColorId
                              select new CarDetailDto
                              {
-                                 CarId = ca.CarId,
+                                 CarId = ca.id,
                                  BrandName = br.Name,
                                  ColorName = co.Name,
-                                 DailyPrice = ca.DailyPrice,
-                                 Description = ca.Description,
-                                 ModelYear = ca.ModelYear
+                                 DailyPrice = ca.dailyPrice,
+                                 Description = ca.description,
+                                 ModelYear = ca.modelYear
                              };
                 return result.ToList();
+            }
+        }
+        public CarDetailDto GetCarDetailDto(Expression<Func<Car, bool>> filter = null)
+        {
+            using (EfCarTableContext context = new EfCarTableContext())
+            {
+                var result = from ca in filter is null ? context.Cars : context.Cars.Where(filter)
+                             join br in context.Brands
+                             on ca.brandId equals br.BrandId
+                             join co in context.Colors
+                             on ca.colorId equals co.ColorId
+                             select new CarDetailDto
+                             {
+                                 CarId = ca.id,
+                                 BrandName = br.Name,
+                                 ColorName = co.Name,
+                                 DailyPrice = ca.dailyPrice,
+                                 Description = ca.description,
+                                 ModelYear = ca.modelYear
+                             };
+                return result.SingleOrDefault() ;
             }
         }
     }

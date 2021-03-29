@@ -30,7 +30,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-            [SecuredOperation("product.add,admin")]
+        //[SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
@@ -39,7 +39,7 @@ namespace Business.Concrete
 
             _carDal.Add(car);
 
-            return new SuccessResult(Messages.CarAdded);
+            return new SuccessResult(Messages.BrandAdded);
         }
 
         [SecuredOperation("product.delete,manager")]
@@ -51,7 +51,7 @@ namespace Business.Concrete
 
         public IDataResult<CarDetailAndImagesDto> GetCarDetailAndImagesDto(int carId)
         {
-            var result = _carDal.GetCarDetailDtos(x => x.CarId == carId).SingleOrDefault();
+            var result = _carDal.GetCarDetailDtos(x => x.id == carId).SingleOrDefault();
 
             var imageResult = _carImageService.GetImagesByCarId(carId);
             if (result == null || imageResult.Success == false)
@@ -87,22 +87,22 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos());
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarDetailDtoByCarId(int carId)
+        public IDataResult<CarDetailDto> GetCarDetailDtoByCarId(int carId)
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x=>x.CarId == carId));
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetailDto(x=>x.id == carId));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId)
         {
             IResult result = BusinessRules.Run(CheckIfBrandId(brandId));
 
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x=> x.BrandId == brandId));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x=> x.brandId == brandId));
         }
 
 
         private IResult CheckIfBrandId(int brandId)
         {
-            var result = _carDal.GetAll(p => p.BrandId == brandId).Any();
+            var result = _carDal.GetAll(p => p.brandId == brandId).Any();
             if (result)
             {
                 return new ErrorResult(Messages.BradndIdNotFound);
@@ -113,21 +113,21 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarsByColorId(int v)
         {
-            return new  SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x => x.ColorId == v));
+            return new  SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x => x.colorId == v));
         }
 
-        [CacheAspect]
-        [PerformanceAspect(5)]
+        //[CacheAspect]
+        //[PerformanceAspect(5)]
         public IDataResult<Car> GetCarById(int v)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(x => x.CarId == v));
+            return new SuccessDataResult<Car>(_carDal.Get(x => x.id == v));
         }
 
         [TransactionScopeAspect]
         public IResult AddTransactionTest(Car car)
         {
             Add(car);
-            if (car.DailyPrice < 10)
+            if (car.dailyPrice < 10)
             {
                 throw new Exception("");
             }

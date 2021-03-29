@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,8 +21,31 @@ namespace WebAPI.Controllers
             _colorService = colorService;
         }
 
-        [HttpPost("getcarsbycolorid")]
-        public IActionResult GetCarsByColorId(int id)
+
+        [HttpPost("add")]
+        public IActionResult Add(Color color)
+        {
+            var result = _colorService.Add(color);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("update")]
+        public IActionResult Update(Color color)
+        {
+            var result = _colorService.Update(color);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getcolorbycolorid")]
+        public IActionResult GetColorByColorId(int id)
         {
             var result = _colorService.GetCarsByColorId(id);
             if (result.Success)

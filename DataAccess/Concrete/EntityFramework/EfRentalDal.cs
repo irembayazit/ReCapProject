@@ -20,8 +20,8 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 
                 var result = from rental in filter is null ? context.Rentals : context.Rentals.Where(filter)
-                             join car in context.Cars on rental.CarId equals car.CarId
-                             join brand in context.Brands on car.BrandId equals brand.BrandId
+                             join car in context.Cars on rental.CarId equals car.id
+                             join brand in context.Brands on car.brandId equals brand.BrandId
                              join customer in context.Customers on rental.CustomerId equals customer.Id
                              join user in context.Users on customer.UserId equals user.Id
                              
