@@ -34,9 +34,31 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalDelete);
         }
 
+        public IDataResult<Rental> GetRentalByCarId(int carId)
+        {
+            var result = _rentalDal.Get(x => x.CarId == carId);
+            if (result != null)
+            {
+                return new SuccessDataResult<Rental>(result, Messages.RentalListed);
+            }
+            else
+            {
+                return new ErrorDataResult<Rental>(Messages.CarIdNotFound);
+            }
+        }
+
         public IDataResult<List<RentalDetailDto>> GetRentalByCarIdDetailDTOs(int carId)
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailDTOs(x => x.CarId == carId), Messages.RentalListed);
+            var result = _rentalDal.GetRentalDetailDTOs(x => x.CarId == carId);
+            if(result.Count!=0)
+            {
+                return new SuccessDataResult<List<RentalDetailDto>>(result,Messages.RentalListed);
+            }
+            else
+            {
+                return new ErrorDataResult<List<RentalDetailDto>>(Messages.CarIdNotFound);
+            }
+            
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetailDTOs()
