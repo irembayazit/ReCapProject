@@ -47,5 +47,8 @@ namespace Business.Constent
         public static string CreditCardDeleted = "Kredi karı silindi";
         public static string CreditCardUpdated = "kredi kartı güncellendi";
         public static string ColorUpdated = "Renk bilgisi güncellendi";
+        public static string NotFindex = "Findex puanı yetersiz";
+        
+
     }
 }

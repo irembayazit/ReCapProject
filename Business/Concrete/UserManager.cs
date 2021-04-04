@@ -4,6 +4,7 @@ using Core.Entities.Concrete;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -45,7 +46,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user), "Roller geldi");
         }
 
+        public IDataResult<UserDto> GetUserByEmail(string email)
+        {
+            var result = _userDal.GetUserByEmail(email);
+            if (result != null)
+            {
+                return new SuccessDataResult<UserDto>(result);
+            }
 
+            return new ErrorDataResult<UserDto>("Böyle bir kullanıcı bulunamadı");
+        }
 
     }
 }

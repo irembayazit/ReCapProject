@@ -73,5 +73,17 @@ namespace Business.Concrete
             var accessToken = _tokenHelper.CreateToken(user, claims.Data);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
+
+
+        public IDataResult<UserDto> GetUserByEmail(string email)
+        {
+            var result = _userService.GetUserByEmail(email);
+            if (result.Success)
+            {
+                return new SuccessDataResult<UserDto>(result.Data);
+            }
+
+            return new ErrorDataResult<UserDto>(result.Message);
+        }
     }
 }

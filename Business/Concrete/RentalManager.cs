@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constent;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
 using DataAccess.Abstract;
@@ -14,24 +15,39 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
-        public RentalManager(IRentalDal rentalDal)
+        ICustomerDal _customerDal;
+        public RentalManager(IRentalDal rentalDal, ICustomerDal customerDal)
         {
             _rentalDal = rentalDal;
+            _customerDal = customerDal;
         }
+
         public IResult Add(Rental rental)
         {
-            if(rental.CustomerId == 0 )
+            var result = _rentalDal.UserFindex(x => x.Id == rental.CustomerId);
+            var result2 = _rentalDal.CardFindex(x => x.CarId == rental.CarId);
+
+            if (result.Data > result2.Data)
             {
-                return new ErrorResult(Messages.RentalNotAdd);
+                _rentalDal.Add(rental);
+                return new SuccessResult(Messages.RentalAdd);
             }
-            _rentalDal.Add(rental);
-            return new SuccessResult(Messages.RentalAdd);
+            else
+            {
+                return new ErrorResult(Messages.NotFindex);
+            }
         }
+
 
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.RentalDelete);
+        }
+
+        public IDataResult<List<Rental>> GetAll()
+        {
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalListed);
         }
 
         public IDataResult<Rental> GetRentalByCarId(int carId)
