@@ -10,6 +10,7 @@ namespace Business.Abstract
     {
         IResult Add(CreditCard creditCard);
         IResult Delete(CreditCard creditCard);
-        IResult Update(CreditCard creditCard);
+        IResult Update(CreditCard creditCard); 
+        IDataResult<List<CreditCard>> CardControl(int customerId);
     }
 }

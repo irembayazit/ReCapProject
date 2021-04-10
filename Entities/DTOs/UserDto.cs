@@ -7,9 +7,11 @@ namespace Entities.DTOs
 {
     public class UserDto : IDto
     {
+        public int CustomerId { get; set; }
+        public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int CustomerId { get; set; }
-
+        public string CompanyName { get; set; }
+        public int Findex { get; set; }
     }
 }

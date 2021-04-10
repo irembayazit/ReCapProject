@@ -7,48 +7,61 @@ namespace Business.Constent
 {
     public static class Messages
     {
-        public static string ColorAdded = "renk eklendiii";
-        public static string BrandAdded = "marka eklendiii";
-        public static string CarAdded = "Araba eklendi";
-        public static string CarAddInvalid = "Gecersiz deger.Araba eklenemedi!";
-        public static string BrandNameInvalid = "Marka adı gecersiz";
-        public static string MaintenanceTime = "Sistem bakimda";
-        public static string CarListed = "Arabalar listelendi";
-        public static string CarDeleted = "Araba bilgileri silindi";
-        public static string CarUpdated = "Araba bilgileri güncellendi";
-        public static string CustomerAdded = "Müşteri bilgileri eklendi";
-        public static string CustomerDelete = "Müşteri bilgileri silindi";
-        public static string CustomerUpdate = "Müşteri bilgileri güncellendi";
-        public static string RentalNotAdd = "Kiralama işlemi eklenemedi.Müşteri bilgilerini eklediğinizden emin olunuz!";
-        public static string RentalAdd = "Kiralama blgileri eklendi.";
-        public static string RentalDelete = "Kiralama blgileri silindi.";
-        public static string RentalUpdate = "Kiralama blgileri güncellendi.";
-        public static string UserAdd = "Kullanıcı blgileri eklendi.";
-        public static string UserDelete = "Kullanıcı blgileri silindi.";
-        public static string UserUpdate = "Kullanıcı blgileri güncellendi.";
-        public static string FailAddedImageLimit = "Daha fazla resim yüklenemez!";
-        public static string ImagesAdded = "resim eklendi";
-        public static string CarIdNotFound = "kayıtlı id bulunamadı";
-        public static string UserRegistered = "Kayıt oldu";
-        public static string UserNotFound = "Kullanıcı bulunamadı";
-        public static string PasswordError = "Parola hatası";
-        public static string SuccessfulLogin = "Başarılı giriş";
-        public static string UserAlreadyExists = "Kullanıcı mevcut";
-        public static string AccessTokenCreated = "Token oluşturuldu";
-        public static string AuthorizationDenied = "Yetkiniz yok!";
-        public static string BrandListed = "markalar listelendi";
-        public static string ColorListed = "renkler listeendi";
-        public static string CustomerListed = "müşteriler listelendi";
-        public static string RentalListed = "kiralık araç bilgileri listelendi";
-        public static string BradndIdNotFound = "ilgili id bulunamadı";
-        public static string GetErrorCarMessage = "Araç bilgisi / bilgileri getirilemedi.";
-        public static string GetSuccessCarMessage = "Araç bilgisi / bilgileri getirildi.";
-        public static string CreditCardAdded = "Kredi kartı eklendi";
-        public static string CreditCardDeleted = "Kredi karı silindi";
-        public static string CreditCardUpdated = "kredi kartı güncellendi";
-        public static string ColorUpdated = "Renk bilgisi güncellendi";
-        public static string NotFindex = "Findex puanı yetersiz";
+        public static string ColorAdded = "Color added";
+        public static string ColorListed = "Colors listed";
+        public static string ColorUpdated = "Color information updated";
+
+        public static string BrandAdded = "Brand added";
+        public static string BrandNameInvalid = "Brand name is invalid";
+        public static string BrandListed = "Brands listed";
+        public static string BradndIdNotFound = "The corresponding id could not be found";
+
+        public static string CarAdded = "Car  added";
+        public static string CarAddInvalid = "Invalid value.The car could not be added!";
+        public static string CarListed = "Cars listed";
+        public static string CarDeleted = "Car information deleted";
+        public static string CarUpdated = "Car information updated";
+        public static string CarIdNotFound = "The corresponding id could not be found";
+        public static string GetErrorCarMessage = "Vehicle information / information could not be listed";
+        public static string GetSuccessCarMessage = "Listed vehicle information / information";
+
+        public static string MaintenanceTime = "System is under maintenance";
         
+        public static string CustomerAdded = "Customer information added";
+        public static string CustomerDelete = "Customer information deleted";
+        public static string CustomerUpdate = "Customer information updated";
+        public static string CustomerListed = "Customer information listed";
+
+        public static string RentalNotAdd = "Could not add rental transaction.Make sure to add customer information!";
+        public static string RentalAdd = "Rental information added";
+        public static string RentalDelete = "Rental information deleted";
+        public static string RentalUpdate = "Rental information updated";
+        public static string RentalListed = "Rental information listed";
+        public static string NotRental = "Cannot be rented between these dates";
+
+        public static string UserAdd = "User information added";
+        public static string UserDelete = "User information deleted";
+        public static string UserUpdate = "User information updated";
+        public static string UserRegistered = "Registration successful";
+        public static string UserNotFound = "User not found";
+        public static string UserAlreadyExists = "User available";
+        public static string UserDetailsUpdated = "Your information has been updated";
+
+        public static string FailAddedImageLimit = "No more images can be uploaded!";
+        public static string ImagesAdded = "Picture added";
+
+        public static string PasswordError = "Password error";
+        public static string SuccessfulLogin = "Successful login";
+        public static string AccessTokenCreated = "Token created";
+        public static string AuthorizationDenied = "You have no authorization!";
+        public static string NotFindex = "Findex points insufficient";
+        public static string NotPassword = "Passwords do not match";
+
+        public static string CreditCardAdded = "Credit card added";
+        public static string CreditCardDeleted = "Credit card deleted";
+        public static string CreditCardUpdated = "Credit card updated";
+        public static string CreditCardControl = "Registered credit cards listed";
+        public static string CreditCardControlNot = "No credit card registered";
 
     }
 }

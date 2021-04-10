@@ -13,5 +13,8 @@ namespace Entities.DTOs
         public int ModelYear { get; set; }
         public decimal DailyPrice { get; set; }
         public string Description { get; set; }
+        public int Findex { get; set; }
+        public string ImagePath { get; set; }
+
     }
 }

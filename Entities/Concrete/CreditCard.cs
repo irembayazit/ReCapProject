@@ -12,8 +12,9 @@ namespace Entities.Concrete
         public string NameSurname { get; set; }
         public string CardNumber { get; set; }
         public string CardCvv { get; set; }
-        public decimal Money { get; set; }
-        public string EndDate { get; set; }
-        
+        public int Money { get; set; }
+        public string EndDateMonth { get; set; }
+        public string EndDateYear { get; set; }
+
     }
 }

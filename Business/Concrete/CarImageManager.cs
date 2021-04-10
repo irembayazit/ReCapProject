@@ -20,9 +20,11 @@ namespace Business.Concrete
     public class CarImageManager : ICarImageService
     {
         ICarImageDal _carImageDal;
-        public CarImageManager(ICarImageDal carImageDal)
+        ICarDal _carDal;
+        public CarImageManager(ICarImageDal carImageDal , ICarDal carDal)
         {
             _carImageDal = carImageDal;
+            _carDal = carDal;
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
@@ -73,8 +75,8 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetImagesByCarId(int carId)
         {
-            var result = _carImageDal.GetAll(p => p.CarId == carId);
-            if (result != null)
+            var result = _carDal.GetAll(p => p.Id == carId);
+            if (result.Count != 0)
             {
                 return new SuccessDataResult<List<CarImage>>(CheckIfCarImageNull(carId));
             }

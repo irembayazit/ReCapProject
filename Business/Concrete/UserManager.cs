@@ -1,8 +1,9 @@
-﻿using Business.Abstract;
+﻿ using Business.Abstract;
 using Business.Constent;
 using Core.Entities.Concrete;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
+using Core.Utilities.Security.Hasing;
 using DataAccess.Abstract;
 using Entities.DTOs;
 using System;
@@ -14,9 +15,11 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
-        public UserManager(IUserDal userDal)
+        ICustomerDal _customerDal;
+        public UserManager(IUserDal userDal, ICustomerDal customerDal)
         {
             _userDal = userDal;
+            _customerDal = customerDal;
         }
         public IResult Add(User user)
         {
@@ -37,8 +40,17 @@ namespace Business.Concrete
 
         public IDataResult<User> GetByMail(string email)
         {
-
             return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
+        }
+
+        public IDataResult<List<User>> GetAll()
+        {
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.CarListed);
+        }
+
+        public IDataResult<User> GetById(int id)
+        {
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == id));
         }
 
         public IDataResult<List<OperationClaim>> GetClaims(User user)
@@ -57,5 +69,40 @@ namespace Business.Concrete
             return new ErrorDataResult<UserDto>("Böyle bir kullanıcı bulunamadı");
         }
 
+        public IResult UserDtoUpdate(UpdateUserDto updateUserDto)
+        {
+            var user = GetById(updateUserDto.Id).Data;
+
+            if(updateUserDto.CurrentPassword != "" && updateUserDto.NewPassword != "")
+            {
+                if (!HashingHelper.VerifyPasswordHash(updateUserDto.CurrentPassword, user.PasswordHash, user.PasswordSalt))
+                {
+                    return new ErrorResult(Messages.PasswordError);
+                }
+                    
+                byte[] passwordHash, passwordSalt;
+                HashingHelper.CreatePasswordHash(updateUserDto.NewPassword, out passwordHash, out passwordSalt);
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+                
+            }
+            
+            user.FirstName = updateUserDto.FirstName;
+            user.LastName = updateUserDto.LastName;
+            user.Email = updateUserDto.Email;
+
+            _userDal.Update(user);
+
+            var customer = _customerDal.Get(c => c.Id == updateUserDto.CustomerId);
+            customer.CompanyName = updateUserDto.CompanyName;
+            _customerDal.Update(customer);
+
+            return new SuccessResult(Messages.UserDetailsUpdated);
+        }
+
+        public IDataResult<List<string>> Authority(string email)
+        {
+            return new SuccessDataResult<List<string>>(_userDal.GetAuthority(x=>x.Email == email));
+        }
     }
 }

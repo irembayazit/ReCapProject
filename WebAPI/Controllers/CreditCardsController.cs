@@ -52,5 +52,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("cardcontrol")]
+        public IActionResult CardControl(int customerId)
+        {
+            var result = _creditCardService.CardControl(customerId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

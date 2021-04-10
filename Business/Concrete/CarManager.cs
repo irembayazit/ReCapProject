@@ -84,7 +84,12 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetailDto()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos());
+            var results = _carDal.GetCarDetailDtos();            
+            foreach (var result in results)
+            {
+                result.ImagePath =  _carImageService.GetImagesByCarId(result.CarId).Data[0].ImagePath;
+            }
+            return new SuccessDataResult<List<CarDetailDto>>(results);
         }
 
         public IDataResult<CarDetailDto> GetCarDetailDtoByCarId(int carId)
@@ -94,11 +99,33 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId)
         {
-            IResult result = BusinessRules.Run(CheckIfBrandId(brandId));
-
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x=> x.brandId == brandId));
+            IResult checkResult = BusinessRules.Run(CheckIfBrandId(brandId));
+            var results = _carDal.GetCarDetailDtos(x => x.brandId == brandId);            
+            foreach (var result in results)
+            {
+                result.ImagePath =  _carImageService.GetImagesByCarId(result.CarId).Data[0].ImagePath;
+            }
+            return new SuccessDataResult<List<CarDetailDto>>(results);
+        }
+        public IDataResult<List<CarDetailDto>> GetCarsByColorId(int v)
+        {
+            var results = _carDal.GetCarDetailDtos(x => x.colorId == v);
+            foreach (var result in results)
+            {
+                result.ImagePath = _carImageService.GetImagesByCarId(result.CarId).Data[0].ImagePath;
+            }
+            return new SuccessDataResult<List<CarDetailDto>>(results);
         }
 
+        public IDataResult<List<CarDetailDto>> GetCarFilterBrandIdColorId(int brandId, int colorId)
+        {
+            var results = _carDal.GetCarFilterBrandIdColorId(brandId, colorId);
+            foreach (var result in results)
+            {
+                result.ImagePath = _carImageService.GetImagesByCarId(result.CarId).Data[0].ImagePath;
+            }
+            return new SuccessDataResult<List<CarDetailDto>>(results);
+        }
 
         private IResult CheckIfBrandId(int brandId)
         {
@@ -109,12 +136,7 @@ namespace Business.Concrete
             }
 
             return new SuccessResult();
-        }
-
-        public IDataResult<List<CarDetailDto>> GetCarsByColorId(int v)
-        {
-            return new  SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailDtos(x => x.colorId == v));
-        }
+        }        
 
         //[CacheAspect]
         //[PerformanceAspect(5)]

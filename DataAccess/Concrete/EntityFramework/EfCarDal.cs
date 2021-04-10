@@ -17,10 +17,8 @@ namespace DataAccess.Concrete.EntityFramework
             using (EfCarTableContext context = new EfCarTableContext())
             {
                 var result = from ca in filter is null ? context.Cars : context.Cars.Where(filter)
-                             join br in context.Brands
-                             on ca.brandId equals br.BrandId
-                             join co in context.Colors
-                             on ca.colorId equals co.ColorId
+                             join br in context.Brands on ca.brandId equals br.BrandId
+                             join co in context.Colors on ca.colorId equals co.ColorId
                              select new CarDetailDto
                              {
                                  CarId = ca.Id,
@@ -28,7 +26,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName = co.Name,
                                  DailyPrice = ca.dailyPrice,
                                  Description = ca.description,
-                                 ModelYear = ca.modelYear
+                                 ModelYear = ca.modelYear,
                              };
                 return result.ToList();
             }
@@ -38,10 +36,8 @@ namespace DataAccess.Concrete.EntityFramework
             using (EfCarTableContext context = new EfCarTableContext())
             {
                 var result = from ca in filter is null ? context.Cars : context.Cars.Where(filter)
-                             join br in context.Brands
-                             on ca.brandId equals br.BrandId
-                             join co in context.Colors
-                             on ca.colorId equals co.ColorId
+                             join br in context.Brands on ca.brandId equals br.BrandId
+                             join co in context.Colors on ca.colorId equals co.ColorId
                              select new CarDetailDto
                              {
                                  CarId = ca.Id,
@@ -49,9 +45,32 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName = co.Name,
                                  DailyPrice = ca.dailyPrice,
                                  Description = ca.description,
-                                 ModelYear = ca.modelYear
+                                 ModelYear = ca.modelYear,
+                                 Findex = ca.Findex,
                              };
                 return result.SingleOrDefault() ;
+            }
+        }
+
+        public List<CarDetailDto> GetCarFilterBrandIdColorId(int brandId, int colorId)
+        {
+            using (EfCarTableContext context = new EfCarTableContext())
+            {
+                var result = from ca in context.Cars
+                             join co in context.Colors on ca.colorId equals co.ColorId
+                             join br in context.Brands on ca.brandId equals br.BrandId
+                             where ca.colorId == colorId && br.BrandId == brandId
+                             select new CarDetailDto
+                             {
+                                 CarId = ca.Id,
+                                 Description = ca.description,
+                                 DailyPrice = ca.dailyPrice,
+                                 BrandName = br.Name,
+                                 ColorName = co.Name,
+                                 ModelYear = ca.modelYear,
+                                 Findex = ca.Findex,
+                             };
+                return result.ToList();
             }
         }
     }

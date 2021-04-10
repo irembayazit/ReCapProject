@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constent;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrate;
@@ -22,6 +24,7 @@ namespace Business.Concrete
             _customerDal = customerDal;
         }
 
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
             var result = _rentalDal.UserFindex(x => x.Id == rental.CustomerId);
@@ -89,15 +92,15 @@ namespace Business.Concrete
             {
                 if (date.RentDate <= rental.RentDate && rental.RentDate <= date.ReturnDate)
                 {
-                    return new ErrorResult();
+                    return new ErrorResult(Messages.NotRental);
                 }
                 else if (date.RentDate <= rental.ReturnDate && rental.ReturnDate <= date.ReturnDate)
                 {
-                    return new ErrorResult();
+                    return new ErrorResult(Messages.NotRental);
                 }
                 else if (date.RentDate >= rental.RentDate && rental.ReturnDate >= date.ReturnDate)
                 {
-                    return new ErrorResult();
+                    return new ErrorResult(Messages.NotRental);
                 }
             }
              return new SuccessResult();
