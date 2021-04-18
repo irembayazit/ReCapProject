@@ -1,4 +1,13 @@
-# ReCapProject
+# About The Project
+
+## Built With
+
+*C#
+*ASP.NET
+*SQL
+*ENTITY FRAMEWORK
+*AUTOFAC
+*FLUENT VALIDATION
 
 ![home](https://user-images.githubusercontent.com/65310334/115159081-16a12780-a09a-11eb-93a4-9f21bb2919f9.png)
 
