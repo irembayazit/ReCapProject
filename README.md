@@ -2,12 +2,19 @@
 
 ## Built With
 
-#### C#
-#### ASP.NET
-#### SQL
-#### ENTITY FRAMEWORK
-#### AUTOFAC
-#### FLUENT VALIDATION
+- C#
+- ASP.NET
+- SQL
+- ENTITY FRAMEWORK
+- AUTOFAC
+- FLUENT VALIDATION
+
+## Layers
+- Business
+- Core
+- DataAccess
+- Entities
+- WebAPI
 
 ![home](https://user-images.githubusercontent.com/65310334/115159081-16a12780-a09a-11eb-93a4-9f21bb2919f9.png)
 
@@ -24,9 +31,3 @@
 ![profile](https://user-images.githubusercontent.com/65310334/115159201-a21ab880-a09a-11eb-8bd5-64006fa49d09.png)
 
 
-## Layers
-### Business
-### Core
-### DataAccess
-### Entities
-### WebAPI
