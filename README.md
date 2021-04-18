@@ -11,10 +11,15 @@
 
 ## Layers
 - Business
+  * The data from the user first goes to the Business layer, from there it is processed and transferred to the Data Access layer. In this layer, we also specify who will access these data.
 - Core
+  - of our models, interfaces, etc. is the layer in which it will be located.
 - DataAccess
+  - Database operations are performed in this layer. The task of this layer is to add, delete, update and extract (CRUD) data from the database.
 - Entities
+  - Entities Layer created for database tables.
 - WebAPI
+  - Web API Layer that opens the business layer to the internet.
 
 ![home](https://user-images.githubusercontent.com/65310334/115159081-16a12780-a09a-11eb-93a4-9f21bb2919f9.png)
 
