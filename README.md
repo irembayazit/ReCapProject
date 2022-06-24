@@ -9,6 +9,7 @@
 - AUTOFAC
 - FLUENT VALIDATION
 
+
 ## Layers
 ### Business
 The data from the user first goes to the Business layer, from there it is processed and transferred to the Data Access layer. In this layer, we also specify who will access these data.
